@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "Make sure code is clean 🧹🧼"
+yarn run lint
+echo "Make sure code is pretty ✨"
+yarn run prettier
+echo "Testing 🧪"
+yarn test
