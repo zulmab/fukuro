@@ -1,0 +1,3 @@
+{
+  setupFilesAfterEnv: ['<rootDir>/setupTest.ts']
+}
