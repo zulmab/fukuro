@@ -1,11 +1,14 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import React from 'react'
+import Main from '../layout/Main/Main'
 
-export default function Home() {
+export default function PersistentDrawerLeft() {
   return (
-    <div>
-      <h1>Fukuro 🦉</h1>
-    </div>
+    <Main>
+      <h1>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique distinctio omnis
+        architecto nemo officiis necessitatibus nostrum quis veniam asperiores corrupti voluptatem
+        enim corporis repellendus rerum, nulla debitis soluta, minima error?
+      </h1>
+    </Main>
   )
 }
