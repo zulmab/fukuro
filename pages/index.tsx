@@ -1,14 +1,13 @@
 import React from 'react'
 import Main from '../layout/Main/Main'
+import Client from '../components/Client/Client'
 
 export default function PersistentDrawerLeft() {
   return (
     <Main>
-      <h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique distinctio omnis
-        architecto nemo officiis necessitatibus nostrum quis veniam asperiores corrupti voluptatem
-        enim corporis repellendus rerum, nulla debitis soluta, minima error?
-      </h1>
+      <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" className="canvas">
+        <Client x={10} y={10} requestRate={10} timeRate={2} hasConnection={false} />
+      </svg>
     </Main>
   )
 }

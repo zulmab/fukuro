@@ -17,6 +17,7 @@ const Main: FC = (props) => {
   const handleDrawerClose = () => {
     setOpen(false)
   }
+
   return (
     <Fragment>
       <Head>
