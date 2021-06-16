@@ -1,5 +1,5 @@
 import React from 'react'
-import Main from '../layout/Main/Main'
+import { Main } from '../layout/Main'
 import classes from '../styles/Home.module.css'
 import { Client } from '../components/architecture/Client'
 

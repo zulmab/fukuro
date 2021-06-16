@@ -19,12 +19,14 @@ export const Navbar: FC<INavbarProps> = (props) => {
       className={clsx(classes.appBar, {
         [classes.appBarShift]: props.isOpen,
       })}
+      role="navigation"
     >
       <Toolbar>
         <IconButton
           color="inherit"
           onClick={props.onBurgerClick}
           className={clsx(classes.menuButton, props.isOpen && classes.hide)}
+          data-testid="burger-button"
         >
           <MenuIcon />
         </IconButton>

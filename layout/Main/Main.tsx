@@ -6,7 +6,7 @@ import { SideToolbar } from '../../components/SideToolbar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { useStyles } from './uiStyles'
 
-const Main: FC = (props) => {
+export const Main: FC = (props) => {
   const [open, setOpen] = useState(false)
   const classes = useStyles()
 
@@ -40,5 +40,3 @@ const Main: FC = (props) => {
     </Fragment>
   )
 }
-
-export default Main

@@ -24,10 +24,11 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
       classes={{
         paper: classes.drawerPaper,
       }}
+      role="toolbar"
     >
       <div className={classes.drawerHeader}>
         Components
-        <IconButton onClick={props.onClose}>
+        <IconButton onClick={props.onClose} data-testid="back-button">
           {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
         </IconButton>
       </div>

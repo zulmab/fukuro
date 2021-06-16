@@ -2,12 +2,12 @@ import { Fragment } from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Tooltip from '@material-ui/core/Tooltip'
 
-export interface IDataTooltip {
+export interface IDataTooltipProps {
   content: JSX.Element
   children: JSX.Element
 }
 
-export const DataTooltip = (props: IDataTooltip) => {
+export const DataTooltip = (props: IDataTooltipProps) => {
   const CustomTooltip = withStyles((theme) => ({
     tooltip: {
       backgroundColor: '#f5f5f9',
@@ -18,6 +18,8 @@ export const DataTooltip = (props: IDataTooltip) => {
   }))(Tooltip)
 
   return (
-    <CustomTooltip title={<Fragment>{props.content}</Fragment>}>{props.children}</CustomTooltip>
+    <CustomTooltip title={<Fragment>{props.content}</Fragment>} data-testid="data-tooltip">
+      {props.children}
+    </CustomTooltip>
   )
 }

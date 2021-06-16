@@ -50,13 +50,13 @@ export const Client: FC<IClientProps> = ({
 
   return (
     <DataTooltip content={dataTable}>
-      <g>
+      <g data-testid="arch-client">
         <rect x={x} y={y} className={classes.client} />
         <text x={labelPostion.x} y={labelPostion.y} className={classes.client_label}>
           Client
         </text>
         <text x={x} y={y + 65} className={classes.client_data}>
-          Rate: {requestRate} req / {timeRate}sec
+          Rate: {requestRate} req / {timeRate} sec
         </text>
       </g>
     </DataTooltip>
