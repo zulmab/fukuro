@@ -9,3 +9,14 @@
 .client:hover {
   stroke: #4f4f4f;
 }
+
+.cliente_label,
+.client_data {
+  font-family: 'Verdana';
+  font-size: 1rem;
+  fill: black;
+}
+
+.client_data {
+  font-size: 0.62rem;
+}

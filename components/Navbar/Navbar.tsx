@@ -11,7 +11,7 @@ export interface INavbarProps {
   isOpen: boolean
 }
 
-const Navbar: FC<INavbarProps> = (props) => {
+export const Navbar: FC<INavbarProps> = (props) => {
   const classes = useStyles()
   return (
     <AppBar
@@ -35,5 +35,3 @@ const Navbar: FC<INavbarProps> = (props) => {
     </AppBar>
   )
 }
-
-export default Navbar

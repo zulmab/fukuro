@@ -12,7 +12,7 @@ export interface ISideToolbar {
   onClose: () => void
 }
 
-const SideToolbar: FC<ISideToolbar> = (props) => {
+export const SideToolbar: FC<ISideToolbar> = (props) => {
   const theme = useTheme()
   const classes = useStyles()
   return (
@@ -36,5 +36,3 @@ const SideToolbar: FC<ISideToolbar> = (props) => {
     </Drawer>
   )
 }
-
-export default SideToolbar

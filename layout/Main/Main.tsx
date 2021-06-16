@@ -1,8 +1,8 @@
 import { FC, Fragment, useState } from 'react'
 import Head from 'next/head'
 import clsx from 'clsx'
-import Navbar from '../../components/Navbar/Navbar'
-import SideToolbar from '../../components/SideToolbar/SideToolbar'
+import { Navbar } from '../../components/Navbar'
+import { SideToolbar } from '../../components/SideToolbar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { useStyles } from './uiStyles'
 
