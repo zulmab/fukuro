@@ -17,6 +17,7 @@ export const useStyles = makeStyles((theme) => ({
     marginTop: '64px',
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#f0f3f7',
   },
   contentShift: {
