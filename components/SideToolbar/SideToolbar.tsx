@@ -12,7 +12,7 @@ export interface ISideToolbar {
   onClose: () => void
 }
 
-const SideToolbar: FC<ISideToolbar> = (props) => {
+export const SideToolbar: FC<ISideToolbar> = (props) => {
   const theme = useTheme()
   const classes = useStyles()
   return (
@@ -24,10 +24,11 @@ const SideToolbar: FC<ISideToolbar> = (props) => {
       classes={{
         paper: classes.drawerPaper,
       }}
+      role="toolbar"
     >
       <div className={classes.drawerHeader}>
         Components
-        <IconButton onClick={props.onClose}>
+        <IconButton onClick={props.onClose} data-testid="back-button">
           {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
         </IconButton>
       </div>
@@ -36,5 +37,3 @@ const SideToolbar: FC<ISideToolbar> = (props) => {
     </Drawer>
   )
 }
-
-export default SideToolbar

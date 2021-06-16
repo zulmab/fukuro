@@ -1,12 +1,12 @@
 import { FC, Fragment, useState } from 'react'
 import Head from 'next/head'
 import clsx from 'clsx'
-import Navbar from '../../components/Navbar/Navbar'
-import SideToolbar from '../../components/SideToolbar/SideToolbar'
+import { Navbar } from '../../components/Navbar'
+import { SideToolbar } from '../../components/SideToolbar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { useStyles } from './uiStyles'
 
-const Main: FC = (props) => {
+export const Main: FC = (props) => {
   const [open, setOpen] = useState(false)
   const classes = useStyles()
 
@@ -17,6 +17,7 @@ const Main: FC = (props) => {
   const handleDrawerClose = () => {
     setOpen(false)
   }
+
   return (
     <Fragment>
       <Head>
@@ -39,5 +40,3 @@ const Main: FC = (props) => {
     </Fragment>
   )
 }
-
-export default Main

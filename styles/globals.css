@@ -6,6 +6,7 @@ body {
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   height: 100vh;
   min-height: 768px;
+  overflow: hidden;
 }
 
 a {

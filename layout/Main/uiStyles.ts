@@ -15,6 +15,10 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: -drawerWidth,
     height: `calc(100vh - 64px)`,
     marginTop: '64px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f0f3f7',
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
