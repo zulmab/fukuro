@@ -1,6 +1,7 @@
 import React, { FC, useEffect, Fragment } from 'react'
 import classes from './Resource.module.css'
 import { DataTooltip } from '../../DataTooltip'
+import { DataTable } from '../../DataTable/DataTable'
 
 export interface IResourceProps {
   x: number
@@ -24,21 +25,23 @@ export const Resource: FC<IResourceProps> = ({
     y: y + 30,
   }
 
-  const dataTable: JSX.Element = (
-    <table>
-      <tr>
-        <td>Req. in progress: </td>
-        <td>{requestinprogress} requests</td>
-      </tr>
-      <tr>
-        <td>Time rate: </td>
-        <td>{timeRate} sec.</td>
-      </tr>
-    </table>
-  )
+  const DataTableJSON: object[] = [
+    {
+      title: 'Req. in progress',
+      value: requestinprogress,
+      postfix: 'requests',
+      abbv: 'req',
+    },
+    {
+      title: 'Max req. capacity',
+      value: requestimaxcapacity,
+      postfix: 'requests',
+      abbv: 'req',
+    },
+  ]
 
   return (
-    <DataTooltip content={dataTable}>
+    <DataTooltip content={<DataTable body={DataTableJSON} />}>
       <g data-testid="arch-resource">
         <rect x={x} y={y} className={classes.resource} />
         <text x={labelPostion.x} y={labelPostion.y} className={classes.resource_label}>

@@ -1,6 +1,7 @@
 import React, { FC, useEffect, Fragment } from 'react'
 import classes from './Service.module.css'
 import { DataTooltip } from '../../DataTooltip'
+import { DataTable } from '../../DataTable/DataTable'
 
 export interface IServiceProps {
   x: number
@@ -24,21 +25,23 @@ export const Service: FC<IServiceProps> = ({
     y: y + 30,
   }
 
-  const dataTable: JSX.Element = (
-    <table>
-      <tr>
-        <td>Req. in progress: </td>
-        <td>{requestinprogress} requests</td>
-      </tr>
-      <tr>
-        <td>Time rate: </td>
-        <td>{timeRate} sec.</td>
-      </tr>
-    </table>
-  )
+  const DataTableJSON: object[] = [
+    {
+      title: 'Req. in progress',
+      value: requestinprogress,
+      postfix: 'requests',
+      abbv: 'req',
+    },
+    {
+      title: 'Time rate',
+      value: timeRate,
+      postfix: 'sec',
+      abbv: 'sec',
+    },
+  ]
 
   return (
-    <DataTooltip content={dataTable}>
+    <DataTooltip content={<DataTable body={DataTableJSON} />}>
       <g data-testid="arch-service">
         <rect x={x} y={y} className={classes.service} />
         <text x={labelPostion.x} y={labelPostion.y} className={classes.service_label}>

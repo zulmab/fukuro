@@ -1,6 +1,7 @@
-import React, { FC, useEffect, Fragment } from 'react'
+import React, { FC, useEffect } from 'react'
 import classes from './Client.module.css'
 import { DataTooltip } from '../../DataTooltip'
+import { DataTable } from '../../DataTable'
 
 export interface IClientProps {
   x: number
@@ -22,6 +23,21 @@ export const Client: FC<IClientProps> = ({
     y: y + 30,
   }
 
+  const DataTableJSON: object[] = [
+    {
+      title: 'Request rate',
+      value: requestRate,
+      postfix: 'requests',
+      abbv: 'req',
+    },
+    {
+      title: 'Time rate',
+      value: timeRate,
+      postfix: 'sec',
+      abbv: 'sec',
+    },
+  ]
+
   useEffect(() => {
     let timer: NodeJS.Timeout
 
@@ -35,21 +51,8 @@ export const Client: FC<IClientProps> = ({
     return () => clearInterval(timer)
   }, [hasConnection, requestRate, timeRate])
 
-  const dataTable: JSX.Element = (
-    <table>
-      <tr>
-        <td>Request rate: </td>
-        <td>{requestRate} requests</td>
-      </tr>
-      <tr>
-        <td>Time rate: </td>
-        <td>{timeRate} sec.</td>
-      </tr>
-    </table>
-  )
-
   return (
-    <DataTooltip content={dataTable}>
+    <DataTooltip content={<DataTable body={DataTableJSON} />}>
       <g data-testid="arch-client">
         <rect x={x} y={y} className={classes.client} />
         <text x={labelPostion.x} y={labelPostion.y} className={classes.client_label}>
