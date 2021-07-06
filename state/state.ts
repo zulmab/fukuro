@@ -5,6 +5,7 @@ export interface SimulatorState {
 }
 
 export interface Client {
+  title: string
   reqRate: number
   timeRate: number
   hasConnection: boolean
@@ -13,17 +14,21 @@ export interface Client {
 }
 
 export interface Service {
+  title: string
   reqinprogress: number
-  reqmaxcapacity: number
+  maxreqcapacity: number
+  failurerate: number
   timeRate: number
   coordX: number
   coordY: number
 }
 
 export interface Resource {
-  reqinprogress: number
-  reqmaxcapacity: number
+  title: string
+  minlatency: number
+  maxlatency: number
   timeRate: number
+  failurerate: number
   coordX: number
   coordY: number
 }

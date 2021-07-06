@@ -33,6 +33,7 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
       action: () => {
         dispatch(
           addClient({
+            title: 'Client',
             reqRate: 10,
             timeRate: 2,
             hasConnection: false,
@@ -47,8 +48,10 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
       action: () => {
         dispatch(
           addService({
+            title: 'Service',
             reqinprogress: 62,
-            reqmaxcapacity: 50,
+            maxreqcapacity: 50,
+            failurerate: 70,
             timeRate: 2,
             coordX: 200,
             coordY: 200,
@@ -61,8 +64,10 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
       action: () => {
         dispatch(
           addResource({
-            reqinprogress: 62,
-            reqmaxcapacity: 50,
+            title: 'Resource',
+            minlatency: 5,
+            maxlatency: 20,
+            failurerate: 25,
             timeRate: 2,
             coordX: 400,
             coordY: 200,

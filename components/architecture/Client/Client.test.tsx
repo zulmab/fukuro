@@ -1,11 +1,13 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { Client, IClientProps } from './Client'
+import { Client } from './Client'
+import { IClientProps } from '../../../interfaces/IClient'
 
 describe('Architecture/Client', () => {
   test('Render client component as svg element and', () => {
     // Arrange
     const clienteProps: IClientProps = {
+      title: 'Client',
       x: 1,
       y: 1,
     }
@@ -25,6 +27,7 @@ describe('Architecture/Client', () => {
   test('Set the component on the right position', () => {
     // Arrange
     const clienteProps: IClientProps = {
+      title: 'Client',
       x: 1,
       y: 1,
     }

@@ -5,9 +5,8 @@ import { Client } from '../components/architecture/Client'
 import { Service } from '../components/architecture/Service'
 import { Resource } from '../components/architecture/Resource'
 import { SimulatorContext } from '../state/context'
-import { addResource, simulatorReducer } from '../state/reducer'
+import { simulatorReducer } from '../state/reducer'
 import { initialSimulatorState } from '../state/state'
-import { formatWithValidation } from 'next/dist/next-server/lib/utils'
 
 export default function Home(): JSX.Element {
   const [state, dispatch] = useReducer(simulatorReducer, initialSimulatorState)
@@ -26,6 +25,7 @@ export default function Home(): JSX.Element {
         >
           {state.clients.map((c, index) => (
             <Client
+              title={c.title}
               x={c.coordX}
               y={c.coordY}
               requestRate={c.reqRate}
@@ -36,23 +36,27 @@ export default function Home(): JSX.Element {
           ))}
           {state.services.map((c, index) => (
             <Service
+              title={c.title}
               x={c.coordX}
               y={c.coordY}
               requestinprogress={c.reqinprogress}
-              requestimaxcapacity={c.reqmaxcapacity}
+              maxrequestcapacity={c.maxreqcapacity}
+              failurerate={c.failurerate}
               timeRate={c.timeRate}
               hasConnection={false}
               key={`service-${index}`}
             />
           ))}
-          {state.resources.map((c, index) => (
+          {state.resources.map((r, index) => (
             <Resource
-              x={c.coordX}
-              y={c.coordY}
-              requestinprogress={c.reqinprogress}
-              requestimaxcapacity={c.reqmaxcapacity}
-              timeRate={c.timeRate}
-              hasConnection={false}
+              title={r.title}
+              x={r.coordX}
+              y={r.coordY}
+              minimumlatency={r.minlatency}
+              maximlatency={r.maxlatency}
+              failurerate={r.failurerate}
+              timeRate={r.timeRate}
+              hasConnection={r.hasConnection}
               key={`resource-${index}`}
             />
           ))}

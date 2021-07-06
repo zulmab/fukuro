@@ -1,59 +1,96 @@
-import React, { FC, useEffect, Fragment } from 'react'
+import React, { FC, useState } from 'react'
 import classes from './Service.module.css'
 import { DataTooltip } from '../../DataTooltip'
 import { DataTable } from '../../DataTable/DataTable'
-
-export interface IServiceProps {
-  x: number
-  y: number
-  requestinprogress?: number
-  requestimaxcapacity?: number
-  timeRate?: number
-  hasConnection?: boolean
-}
+import { IServiceProps } from '../../../interfaces/IService'
+import { makeLabelPosition } from '../../../utils/utilities'
+import { ModalService } from '../../Modal/ModalService'
 
 export const Service: FC<IServiceProps> = ({
+  title,
   x,
   y,
   requestinprogress = 1,
-  requestimaxcapacity = 1,
-  timeRate = 1,
-  hasConnection,
+  maxrequestcapacity = 1,
+  failurerate = 1,
 }) => {
-  const labelPostion = {
-    x: x + 20,
-    y: y + 30,
-  }
+  const [open, setOpen] = useState(false)
+  const labelPostion = makeLabelPosition(x, y)
 
-  const DataTableJSON: object[] = [
+  const DataJSON: object[] = [
     {
       title: 'Req. in progress',
       value: requestinprogress,
-      postfix: 'requests',
-      abbv: 'req',
+      field: 'reqinprogress',
+      postfix: '',
+      abbv: '',
     },
     {
-      title: 'Time rate',
-      value: timeRate,
-      postfix: 'sec',
-      abbv: 'sec',
+      title: 'Max req. capacity',
+      value: maxrequestcapacity,
+      field: 'maxreqcapacity',
+      postfix: '',
+      abbv: '',
+    },
+    {
+      title: 'Failure rate',
+      value: failurerate,
+      field: 'failurerate',
+      postfix: '%',
+      abbv: '%',
     },
   ]
 
+  const handleClick = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   return (
-    <DataTooltip content={<DataTable body={DataTableJSON} />}>
-      <g data-testid="arch-service">
-        <rect x={x} y={y} className={classes.service} />
-        <text x={labelPostion.x} y={labelPostion.y} className={classes.service_label}>
-          Service
-        </text>
-        <text x={x} y={y + 65} className={classes.service_data}>
-          Req. in progress: {requestinprogress} req / {timeRate} sec
-        </text>
-        <text x={x} y={y + 85} className={classes.service_data}>
-          Max req. capacity: {requestimaxcapacity} req / {timeRate} sec
-        </text>
-      </g>
-    </DataTooltip>
+    <>
+      <DataTooltip content={<DataTable body={DataJSON} />}>
+        <g data-testid="arch-service">
+          <rect x={x} y={y} className={classes.service} />
+          <text
+            x={labelPostion.x}
+            y={labelPostion.y}
+            className={classes.service_label}
+            onClick={handleClick}
+          >
+            {title}
+          </text>
+          <text x={x} y={y + 65} className={classes.service_data}>
+            Req. in progress: {requestinprogress}
+          </text>
+          <text x={x} y={y + 85} className={classes.service_data}>
+            Max req. capacity: {maxrequestcapacity}
+          </text>
+          <text x={x} y={y + 105} className={classes.service_data}>
+            Failure rate: {failurerate} %
+          </text>
+        </g>
+      </DataTooltip>
+      {open && (
+        <ModalService
+          open={open}
+          data={[
+            {
+              title: 'title',
+              value: title,
+              field: 'title',
+              postfix: '',
+              abbv: '',
+            },
+            ...DataJSON,
+          ]}
+          handleClose={handleClose}
+          handleSave={handleClose}
+          title={'Edit Service params'}
+        />
+      )}
+    </>
   )
 }
