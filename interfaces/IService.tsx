@@ -1,9 +1,7 @@
-import { IAServiceProps } from './IAServiceProps'
+import { IActorProps } from './IActorProps'
 
-export interface IServiceProps extends IAServiceProps {
+export interface IServiceProps extends IActorProps {
   title: string
-  requestinprogress?: number
   maxrequestcapacity?: number
-  failurerate?: number
-  timeRate?: number
+  concurrencia?: number
 }

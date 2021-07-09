@@ -13,6 +13,7 @@ export const Resource: FC<IResourceProps> = ({
   minimumlatency = 1,
   maximlatency = 1,
   failurerate = 1,
+  concurrencia = 1,
 }) => {
   const [open, setOpen] = useState(false)
   const labelPostion = makeLabelPosition(x, y)
@@ -39,6 +40,13 @@ export const Resource: FC<IResourceProps> = ({
       postfix: '%',
       abbv: '%',
     },
+    {
+      title: 'Concurrencia',
+      value: concurrencia,
+      field: 'concurrencia',
+      postfix: '',
+      abbv: '',
+    },
   ]
 
   const handleClick = () => {
@@ -53,13 +61,8 @@ export const Resource: FC<IResourceProps> = ({
     <>
       <DataTooltip content={<DataTable body={DataJSON} />}>
         <g data-testid="arch-resource">
-          <rect x={x} y={y} className={classes.resource} />
-          <text
-            x={labelPostion.x}
-            y={labelPostion.y}
-            className={classes.resource_label}
-            onClick={handleClick}
-          >
+          <rect x={x} y={y} className={classes.resource} onClick={handleClick} />
+          <text x={labelPostion.x} y={labelPostion.y} className={classes.resource_label}>
             {title}
           </text>
           <text x={x} y={y + 65} className={classes.resource_data}>
@@ -69,8 +72,11 @@ export const Resource: FC<IResourceProps> = ({
           <text x={x} y={y + 85} className={classes.resource_data}>
             Max latency: {maximlatency} sec
           </text>
-          <text x={x} y={y + 105} className={classes.service_data}>
+          <text x={x} y={y + 105} className={classes.resource_data}>
             Failure rate: {failurerate} %
+          </text>
+          <text x={x} y={y + 125} className={classes.resource_data}>
+            Concurrencia: {concurrencia}
           </text>
         </g>
       </DataTooltip>

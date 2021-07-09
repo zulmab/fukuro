@@ -38,14 +38,6 @@ export const Modal: FC<IModalProps> = ({ open, data, title, handleClose, handleS
               )
             })}
           </DialogContent>
-          {/* <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-            </Button>
-          <Button onClick={handleSave} color="primary">
-            Subscribe
-            </Button>
-        </DialogActions> */}
         </Dialog>
       </>
     )

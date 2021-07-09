@@ -33,12 +33,14 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
       action: () => {
         dispatch(
           addClient({
+            id: 'cliente_id',
             title: 'Client',
+            type: 'cliente',
             reqRate: 10,
-            timeRate: 2,
             hasConnection: false,
             coordX: 10,
             coordY: 200,
+            idservice: 'service_id',
           })
         )
       },
@@ -48,13 +50,14 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
       action: () => {
         dispatch(
           addService({
+            id: 'service_id',
             title: 'Service',
-            reqinprogress: 62,
+            type: 'service',
             maxreqcapacity: 50,
-            failurerate: 70,
-            timeRate: 2,
             coordX: 200,
             coordY: 200,
+            idresource: 'resource_id',
+            concurrencia: 5,
           })
         )
       },
@@ -64,13 +67,15 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
       action: () => {
         dispatch(
           addResource({
+            id: 'resource_id',
             title: 'Resource',
-            minlatency: 5,
-            maxlatency: 20,
-            failurerate: 25,
-            timeRate: 2,
+            type: 'resource',
+            minlatency: 1000,
+            maxlatency: 2000,
+            failurerate: 20,
             coordX: 400,
             coordY: 200,
+            concurrencia: 5,
           })
         )
       },

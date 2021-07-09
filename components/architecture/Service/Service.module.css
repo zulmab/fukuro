@@ -20,3 +20,8 @@
 .service_data {
   font-size: 0.62rem;
 }
+
+.service_show {
+  font-size: 0.62rem;
+  fill: crimson;
+}

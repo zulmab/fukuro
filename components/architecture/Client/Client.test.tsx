@@ -21,7 +21,7 @@ describe('Architecture/Client', () => {
     const rect = screen.queryByTestId('arch-client')?.children[0]
     expect(rect?.tagName).toBe('rect')
     expect(screen.queryByText('Client')).toBeInTheDocument()
-    expect(screen.queryByText('Rate: 1 req / 1 sec')).toBeInTheDocument()
+    expect(screen.queryByText('Rate: 1 req')).toBeInTheDocument()
   })
 
   test('Set the component on the right position', () => {
@@ -40,7 +40,7 @@ describe('Architecture/Client', () => {
     // Assert
     const rect = screen.getByTestId('arch-client')?.children[0]
     const label = screen.getByText('Client')
-    const data = screen.getByText('Rate: 1 req / 1 sec')
+    const data = screen.getByText('Rate: 1 req')
     expect(rect.getAttribute('x')).toBe('1')
     expect(rect.getAttribute('y')).toBe('1')
     expect(label.getAttribute('x')).toBe('21')

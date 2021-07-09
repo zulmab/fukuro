@@ -29,7 +29,6 @@ export default function Home(): JSX.Element {
               x={c.coordX}
               y={c.coordY}
               requestRate={c.reqRate}
-              timeRate={c.timeRate}
               hasConnection={c.hasConnection}
               key={`client-${index}`}
             />
@@ -39,11 +38,8 @@ export default function Home(): JSX.Element {
               title={c.title}
               x={c.coordX}
               y={c.coordY}
-              requestinprogress={c.reqinprogress}
               maxrequestcapacity={c.maxreqcapacity}
-              failurerate={c.failurerate}
-              timeRate={c.timeRate}
-              hasConnection={false}
+              concurrencia={c.concurrencia}
               key={`service-${index}`}
             />
           ))}
@@ -55,8 +51,7 @@ export default function Home(): JSX.Element {
               minimumlatency={r.minlatency}
               maximlatency={r.maxlatency}
               failurerate={r.failurerate}
-              timeRate={r.timeRate}
-              hasConnection={r.hasConnection}
+              concurrencia={r.concurrencia}
               key={`resource-${index}`}
             />
           ))}

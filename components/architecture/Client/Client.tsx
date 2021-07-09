@@ -6,14 +6,7 @@ import { IClientProps } from '../../../interfaces/IClient'
 import { makeLabelPosition } from '../../../utils/utilities'
 import { Modal } from '../../Modal'
 
-export const Client: FC<IClientProps> = ({
-  title,
-  x,
-  y,
-  requestRate = 1,
-  timeRate = 1,
-  hasConnection,
-}) => {
+export const Client: FC<IClientProps> = ({ title, x, y, requestRate = 1, hasConnection }) => {
   const [open, setOpen] = useState(false)
   const labelPostion = makeLabelPosition(x, y)
 
@@ -25,13 +18,6 @@ export const Client: FC<IClientProps> = ({
       postfix: 'requests',
       abbv: 'req',
     },
-    {
-      title: 'Time rate',
-      value: timeRate,
-      field: 'timeRate',
-      postfix: 'sec',
-      abbv: 'sec',
-    },
   ]
 
   const handleClick = () => {
@@ -42,34 +28,16 @@ export const Client: FC<IClientProps> = ({
     setOpen(false)
   }
 
-  useEffect(() => {
-    let timer: NodeJS.Timeout
-
-    if (hasConnection) {
-      timer = setInterval(() => {
-        for (const request of Array(requestRate))
-          console.log({ id: 'some_id', payload: 'some payload', connectTo: 'some_id' })
-      }, timeRate * 1000)
-    }
-
-    return () => clearInterval(timer)
-  }, [hasConnection, requestRate, timeRate])
-
   return (
     <>
       <DataTooltip content={<DataTable body={DataJSON} />}>
         <g data-testid="arch-client">
-          <rect x={x} y={y} className={classes.client} />
-          <text
-            x={labelPostion.x}
-            y={labelPostion.y}
-            className={classes.client_label}
-            onClick={handleClick}
-          >
+          <rect x={x} y={y} className={classes.client} onClick={handleClick} />
+          <text x={labelPostion.x} y={labelPostion.y} className={classes.client_label}>
             {title}
           </text>
           <text x={x} y={y + 65} className={classes.client_data}>
-            Rate: {requestRate} req / {timeRate} sec
+            Rate: {requestRate} req
           </text>
         </g>
       </DataTooltip>

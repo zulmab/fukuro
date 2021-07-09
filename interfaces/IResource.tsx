@@ -1,9 +1,9 @@
-import { IResourceAProps } from './IResourceProps'
+import { IActorProps } from './IActorProps'
 
-export interface IResourceProps extends IResourceAProps {
+export interface IResourceProps extends IActorProps {
   title?: string
   minimumlatency?: number
   maximlatency?: number
   failurerate?: number
-  timeRate?: number
+  concurrencia?: number
 }

@@ -10,21 +10,13 @@ export const Service: FC<IServiceProps> = ({
   title,
   x,
   y,
-  requestinprogress = 1,
   maxrequestcapacity = 1,
-  failurerate = 1,
+  concurrencia = 1,
 }) => {
   const [open, setOpen] = useState(false)
   const labelPostion = makeLabelPosition(x, y)
 
   const DataJSON: object[] = [
-    {
-      title: 'Req. in progress',
-      value: requestinprogress,
-      field: 'reqinprogress',
-      postfix: '',
-      abbv: '',
-    },
     {
       title: 'Max req. capacity',
       value: maxrequestcapacity,
@@ -33,11 +25,11 @@ export const Service: FC<IServiceProps> = ({
       abbv: '',
     },
     {
-      title: 'Failure rate',
-      value: failurerate,
-      field: 'failurerate',
-      postfix: '%',
-      abbv: '%',
+      title: 'Concurrencia',
+      value: concurrencia,
+      field: 'concurrencia',
+      postfix: '',
+      abbv: '',
     },
   ]
 
@@ -53,23 +45,21 @@ export const Service: FC<IServiceProps> = ({
     <>
       <DataTooltip content={<DataTable body={DataJSON} />}>
         <g data-testid="arch-service">
-          <rect x={x} y={y} className={classes.service} />
-          <text
-            x={labelPostion.x}
-            y={labelPostion.y}
-            className={classes.service_label}
-            onClick={handleClick}
-          >
+          <rect x={x} y={y} className={classes.service} onClick={handleClick} />
+          <text x={labelPostion.x} y={labelPostion.y} className={classes.service_label}>
             {title}
           </text>
-          <text x={x} y={y + 65} className={classes.service_data}>
-            Req. in progress: {requestinprogress}
+          <text x={x} y={y + 65} className={classes.service_show}>
+            Req. in progress: 62
           </text>
           <text x={x} y={y + 85} className={classes.service_data}>
             Max req. capacity: {maxrequestcapacity}
           </text>
-          <text x={x} y={y + 105} className={classes.service_data}>
-            Failure rate: {failurerate} %
+          <text x={x} y={y + 105} className={classes.service_show}>
+            Failure rate: 70 %
+          </text>
+          <text x={x} y={y + 125} className={classes.service_data}>
+            Concurrencia: {concurrencia}
           </text>
         </g>
       </DataTooltip>
