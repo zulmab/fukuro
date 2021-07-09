@@ -5,27 +5,37 @@ export interface SimulatorState {
 }
 
 export interface Client {
+  id: string
+  title: string
+  type: string
   reqRate: number
-  timeRate: number
   hasConnection: boolean
   coordX: number
   coordY: number
+  idservice: string
 }
 
 export interface Service {
-  reqinprogress: number
-  reqmaxcapacity: number
-  timeRate: number
+  id: string
+  title: string
+  type: string
+  maxreqcapacity: number
   coordX: number
   coordY: number
+  idresource: string
+  concurrencia: number
 }
 
 export interface Resource {
-  reqinprogress: number
-  reqmaxcapacity: number
-  timeRate: number
+  id: string
+  title: string
+  type: string
+  minlatency: number
+  maxlatency: number
+  failurerate: number
   coordX: number
   coordY: number
+  concurrencia: number
 }
 
 export const initialSimulatorState: SimulatorState = {

@@ -1,64 +1,64 @@
-import React, { FC, useEffect, Fragment } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import classes from './Client.module.css'
 import { DataTooltip } from '../../DataTooltip'
+import { DataTable } from '../../DataTable'
+import { IClientProps } from '../../../interfaces/IClient'
+import { makeLabelPosition } from '../../../utils/utilities'
+import { Modal } from '../../Modal'
 
-export interface IClientProps {
-  x: number
-  y: number
-  requestRate?: number
-  timeRate?: number
-  hasConnection?: boolean
-}
+export const Client: FC<IClientProps> = ({ title, x, y, requestRate = 1, hasConnection }) => {
+  const [open, setOpen] = useState(false)
+  const labelPostion = makeLabelPosition(x, y)
 
-export const Client: FC<IClientProps> = ({
-  x,
-  y,
-  requestRate = 1,
-  timeRate = 1,
-  hasConnection,
-}) => {
-  const labelPostion = {
-    x: x + 20,
-    y: y + 30,
+  const DataJSON: object[] = [
+    {
+      title: 'Request rate',
+      value: requestRate,
+      field: 'reqRate',
+      postfix: 'requests',
+      abbv: 'req',
+    },
+  ]
+
+  const handleClick = () => {
+    setOpen(true)
   }
 
-  useEffect(() => {
-    let timer: NodeJS.Timeout
-
-    if (hasConnection) {
-      timer = setInterval(() => {
-        for (const request of Array(requestRate))
-          console.log({ id: 'some_id', payload: 'some payload', connectTo: 'some_id' })
-      }, timeRate * 1000)
-    }
-
-    return () => clearInterval(timer)
-  }, [hasConnection, requestRate, timeRate])
-
-  const dataTable: JSX.Element = (
-    <table>
-      <tr>
-        <td>Request rate: </td>
-        <td>{requestRate} requests</td>
-      </tr>
-      <tr>
-        <td>Time rate: </td>
-        <td>{timeRate} sec.</td>
-      </tr>
-    </table>
-  )
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   return (
-    <DataTooltip content={dataTable}>
-      <g data-testid="arch-client">
-        <rect x={x} y={y} className={classes.client} />
-        <text x={labelPostion.x} y={labelPostion.y} className={classes.client_label}>
-          Client
-        </text>
-        <text x={x} y={y + 65} className={classes.client_data}>
-          Rate: {requestRate} req / {timeRate} sec
-        </text>
-      </g>
-    </DataTooltip>
+    <>
+      <DataTooltip content={<DataTable body={DataJSON} />}>
+        <g data-testid="arch-client">
+          <rect x={x} y={y} className={classes.client} onClick={handleClick} />
+          <text x={labelPostion.x} y={labelPostion.y} className={classes.client_label}>
+            {title}
+          </text>
+          <text x={x} y={y + 65} className={classes.client_data}>
+            Rate: {requestRate} req
+          </text>
+        </g>
+      </DataTooltip>
+      {open && (
+        <Modal
+          open={open}
+          data={[
+            {
+              title: 'title',
+              value: title,
+              field: 'title',
+              postfix: '',
+              abbv: '',
+            },
+            ...DataJSON,
+          ]}
+          handleClose={handleClose}
+          handleSave={handleClose}
+          title={'Edit Client params'}
+        />
+      )}
+    </>
   )
 }
