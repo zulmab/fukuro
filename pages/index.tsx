@@ -25,6 +25,7 @@ export default function Home(): JSX.Element {
         >
           {state.clients.map((c, index) => (
             <Client
+              id={`clientId-${index}`}
               title={c.title}
               x={c.coordX}
               y={c.coordY}
@@ -35,6 +36,7 @@ export default function Home(): JSX.Element {
           ))}
           {state.services.map((c, index) => (
             <Service
+              id={`serviceId-${index}`}
               title={c.title}
               x={c.coordX}
               y={c.coordY}
@@ -45,6 +47,7 @@ export default function Home(): JSX.Element {
           ))}
           {state.resources.map((r, index) => (
             <Resource
+              id={`resourceId-${index}`}
               title={r.title}
               x={r.coordX}
               y={r.coordY}

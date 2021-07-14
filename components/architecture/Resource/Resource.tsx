@@ -5,8 +5,15 @@ import { DataTable } from '../../DataTable/DataTable'
 import { IResourceProps } from '../../../interfaces/IResource'
 import { makeLabelPosition } from '../../../utils/utilities'
 import { Modal } from '../../Modal/ModalResource'
+import dynamic from 'next/dynamic'
+
+const Arrow = dynamic(() => import('./../../Arrow').then((mod: any) => mod.MyArrow), {
+  loading: () => <p>...</p>,
+  ssr: false,
+})
 
 export const Resource: FC<IResourceProps> = ({
+  id,
   title,
   x,
   y,
@@ -59,9 +66,10 @@ export const Resource: FC<IResourceProps> = ({
 
   return (
     <>
+      <Arrow fm={'to'} to={id} />
       <DataTooltip content={<DataTable body={DataJSON} />}>
         <g data-testid="arch-resource">
-          <rect x={x} y={y} className={classes.resource} onClick={handleClick} />
+          <rect id={id} x={x} y={y} className={classes.resource} onClick={handleClick} />
           <text x={labelPostion.x} y={labelPostion.y} className={classes.resource_label}>
             {title}
           </text>

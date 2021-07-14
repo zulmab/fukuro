@@ -5,8 +5,14 @@ import { DataTable } from '../../DataTable'
 import { IClientProps } from '../../../interfaces/IClient'
 import { makeLabelPosition } from '../../../utils/utilities'
 import { Modal } from '../../Modal'
+import dynamic from 'next/dynamic'
 
-export const Client: FC<IClientProps> = ({ title, x, y, requestRate = 1, hasConnection }) => {
+const Arrow = dynamic(() => import('./../../Arrow').then((mod: any) => mod.MyArrow), {
+  loading: () => <p>...</p>,
+  ssr: false,
+})
+
+export const Client: FC<IClientProps> = ({ id, title, x, y, requestRate = 1 }) => {
   const [open, setOpen] = useState(false)
   const labelPostion = makeLabelPosition(x, y)
 
@@ -30,9 +36,10 @@ export const Client: FC<IClientProps> = ({ title, x, y, requestRate = 1, hasConn
 
   return (
     <>
+      <Arrow fm={id} to={'to'} />
       <DataTooltip content={<DataTable body={DataJSON} />}>
         <g data-testid="arch-client">
-          <rect x={x} y={y} className={classes.client} onClick={handleClick} />
+          <rect id={id} x={x} y={y} className={classes.client} onClick={handleClick} />
           <text x={labelPostion.x} y={labelPostion.y} className={classes.client_label}>
             {title}
           </text>
