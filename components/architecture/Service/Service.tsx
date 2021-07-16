@@ -5,12 +5,6 @@ import { DataTable } from '../../DataTable/DataTable'
 import { IServiceProps } from '../../../interfaces/IService'
 import { makeLabelPosition } from '../../../utils/utilities'
 import { ModalService } from '../../Modal/ModalService'
-import dynamic from 'next/dynamic'
-
-const Arrow = dynamic(() => import('./../../Arrow').then((mod: any) => mod.MyArrow), {
-  loading: () => <p>...</p>,
-  ssr: false,
-})
 
 export const Service: FC<IServiceProps> = ({
   id,
@@ -50,10 +44,11 @@ export const Service: FC<IServiceProps> = ({
 
   return (
     <>
-      <Arrow />
       <DataTooltip content={<DataTable body={DataJSON} />}>
         <g data-testid="arch-service">
           <rect id="to" x={x} y={y} className={classes.service} onClick={handleClick} />
+          <line x1={x + 110} y1={y + 25} x2={x + 210} y2={y + 25} stroke="black" stroke-width="1" />
+
           <text x={labelPostion.x} y={labelPostion.y} className={classes.service_label}>
             {title}
           </text>
