@@ -6,6 +6,7 @@ import { IServiceProps } from '../../../interfaces/IService'
 import { makeLabelPosition } from '../../../utils/utilities'
 import { ModalService } from '../../Modal/ModalService'
 import { Arrow } from '../../Arrow'
+import { useModal } from '../../../hooks/useModal'
 
 export const Service: FC<IServiceProps> = ({
   id,
@@ -15,7 +16,7 @@ export const Service: FC<IServiceProps> = ({
   maxrequestcapacity = 1,
   concurrencia = 1,
 }) => {
-  const [open, setOpen] = useState(false)
+  const { open, handleClick, handleClose } = useModal()
   const labelPostion = makeLabelPosition(x, y)
 
   const DataJSON: object[] = [
@@ -34,14 +35,6 @@ export const Service: FC<IServiceProps> = ({
       abbv: '',
     },
   ]
-
-  const handleClick = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
 
   return (
     <>

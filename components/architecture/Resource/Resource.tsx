@@ -6,6 +6,7 @@ import { IResourceProps } from '../../../interfaces/IResource'
 import { makeLabelPosition } from '../../../utils/utilities'
 import { Modal } from '../../Modal/ModalResource'
 import { Arrow } from '../../Arrow'
+import { useModal } from '../../../hooks/useModal'
 
 export const Resource: FC<IResourceProps> = ({
   id,
@@ -17,7 +18,7 @@ export const Resource: FC<IResourceProps> = ({
   failurerate = 1,
   concurrencia = 1,
 }) => {
-  const [open, setOpen] = useState(false)
+  const { open, handleClick, handleClose } = useModal()
   const labelPostion = makeLabelPosition(x, y)
 
   const DataJSON: object[] = [
@@ -50,14 +51,6 @@ export const Resource: FC<IResourceProps> = ({
       abbv: '',
     },
   ]
-
-  const handleClick = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
 
   return (
     <>

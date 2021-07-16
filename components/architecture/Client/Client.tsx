@@ -5,9 +5,10 @@ import { DataTable } from '../../DataTable'
 import { IClientProps } from '../../../interfaces/IClient'
 import { makeLabelPosition } from '../../../utils/utilities'
 import { Modal } from '../../Modal'
+import { useModal } from '../../../hooks/useModal'
 
 export const Client: FC<IClientProps> = ({ id, title, x, y, requestRate = 1 }) => {
-  const [open, setOpen] = useState(false)
+  const { open, handleClick, handleClose } = useModal()
   const labelPostion = makeLabelPosition(x, y)
 
   const DataJSON: object[] = [
@@ -19,14 +20,6 @@ export const Client: FC<IClientProps> = ({ id, title, x, y, requestRate = 1 }) =
       abbv: 'req',
     },
   ]
-
-  const handleClick = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
 
   return (
     <>
