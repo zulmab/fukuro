@@ -24,8 +24,8 @@ export const Arrow: FC<IArrowProps> = ({ x, y, x2, y2 }) => {
 
   return (
     <g id={'#{origin}-#{destiny}'}>
-      <line x1={start_x} y1={start_y} x2={end_x} y2={end_y} stroke="black" stroke-width="1" />
-      <polygon points={arrowhead_polygon} fill="black" stroke="black" strokke-width="1" />
+      <line x1={start_x} y1={start_y} x2={end_x} y2={end_y} stroke="black" strokeWidth="1" />
+      <polygon points={arrowhead_polygon} fill="black" stroke="black" strokeWidth="1" />
     </g>
   )
 }
