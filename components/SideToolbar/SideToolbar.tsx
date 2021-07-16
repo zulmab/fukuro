@@ -34,13 +34,12 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
         dispatch(
           addClient({
             id: 'cliente_id',
-            title: 'Client',
+            label: 'Client',
             type: 'cliente',
-            reqRate: 10,
-            hasConnection: false,
-            coordX: 10,
-            coordY: 200,
-            idservice: 'service_id',
+            requestRate: 10,
+            x: 10,
+            y: 200,
+            service: 'service_id',
           })
         )
       },
@@ -51,13 +50,13 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
         dispatch(
           addService({
             id: 'service_id',
-            title: 'Service',
+            label: 'Service',
             type: 'service',
-            maxreqcapacity: 50,
-            coordX: 200,
-            coordY: 200,
-            idresource: 'resource_id',
-            concurrencia: 5,
+            maxRequestCapacity: 50,
+            x: 200,
+            y: 200,
+            resources: ['resource_id'],
+            concurrency: 5,
           })
         )
       },
@@ -68,14 +67,14 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
         dispatch(
           addResource({
             id: 'resource_id',
-            title: 'Resource',
+            label: 'Resource',
             type: 'resource',
-            minlatency: 1000,
-            maxlatency: 2000,
-            failurerate: 20,
-            coordX: 400,
-            coordY: 200,
-            concurrencia: 5,
+            minLatency: 1000,
+            maxLatency: 2000,
+            failureRate: 20,
+            x: 400,
+            y: 200,
+            concurrency: 5,
           })
         )
       },
@@ -101,7 +100,7 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
       </div>
       <Divider />
       <List>
-        {listItems.map((item, index) => (
+        {listItems.map((item) => (
           <ListItem button onClick={item.action} key={item.text}>
             <ListItemText primary={item.text} />
           </ListItem>

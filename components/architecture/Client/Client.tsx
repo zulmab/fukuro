@@ -14,7 +14,7 @@ export const Client: FC<IClientProps> = ({ id, title, x, y, requestRate = 1 }) =
     {
       title: 'Request rate',
       value: requestRate,
-      field: 'reqRate',
+      field: 'requestRate',
       postfix: 'requests',
       abbv: 'req',
     },
@@ -48,7 +48,7 @@ export const Client: FC<IClientProps> = ({ id, title, x, y, requestRate = 1 }) =
             {
               title: 'title',
               value: title,
-              field: 'title',
+              field: 'label',
               postfix: '',
               abbv: '',
             },

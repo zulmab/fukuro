@@ -22,14 +22,14 @@ export const Service: FC<IServiceProps> = ({
     {
       title: 'Max req. capacity',
       value: maxrequestcapacity,
-      field: 'maxreqcapacity',
+      field: 'maxRequestCapacity',
       postfix: '',
       abbv: '',
     },
     {
       title: 'Concurrencia',
       value: concurrencia,
-      field: 'concurrencia',
+      field: 'concurrency',
       postfix: '',
       abbv: '',
     },
@@ -73,7 +73,7 @@ export const Service: FC<IServiceProps> = ({
             {
               title: 'title',
               value: title,
-              field: 'title',
+              field: 'label',
               postfix: '',
               abbv: '',
             },
