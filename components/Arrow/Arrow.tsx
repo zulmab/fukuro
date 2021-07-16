@@ -1,33 +1,31 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
+import { IArrowProps } from './IArrowProps'
 
-import Arrow, { DIRECTION, HEAD } from 'react-arrows'
+export const Arrow: FC<IArrowProps> = ({ x, y, x2, y2 }) => {
+  const [coords, setCoords] = useState({
+    start_x: 0,
+    start_y: 0,
+    end_x: 0,
+    end_y: 0,
+  })
+  const [arrowhead_polygon, setArrowhead_polygon] = useState('')
 
-export interface IArrowProps {
-  to: string
-  fm: string
-}
+  const { start_x, start_y, end_x, end_y } = coords
 
-export const MyArrow: FC<IArrowProps> = ({ fm, to }) => {
+  useEffect(() => {
+    setCoords({
+      start_x: x + 100,
+      start_y: y + 25,
+      end_x: x2,
+      end_y: y2 + 25,
+    })
+    setArrowhead_polygon(`${x2},${y2 + 25} ${x2 - 4},${y2 + 29} ${x2 - 4},${y2 + 21}`)
+  }, [])
+
   return (
-    <>
-      <Arrow
-        className="arrow"
-        from={{
-          direction: DIRECTION.RIGHT,
-          node: () => document.getElementById(fm),
-          translation: [0, 0],
-        }}
-        to={{
-          direction: DIRECTION.LEFT,
-          node: () => document.getElementById(to),
-          translation: [0, 0],
-        }}
-        head={{
-          func: HEAD.NORMAL,
-          size: 10, // custom options that will be passed to head function
-          distance: 0.98,
-        }}
-      />
-    </>
+    <g id={'#{origin}-#{destiny}'}>
+      <line x1={start_x} y1={start_y} x2={end_x} y2={end_y} stroke="black" stroke-width="1" />
+      <polygon points={arrowhead_polygon} fill="black" stroke="black" strokke-width="1" />
+    </g>
   )
 }

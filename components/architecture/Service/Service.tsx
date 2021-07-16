@@ -5,6 +5,7 @@ import { DataTable } from '../../DataTable/DataTable'
 import { IServiceProps } from '../../../interfaces/IService'
 import { makeLabelPosition } from '../../../utils/utilities'
 import { ModalService } from '../../Modal/ModalService'
+import { Arrow } from '../../Arrow'
 
 export const Service: FC<IServiceProps> = ({
   id,
@@ -47,8 +48,7 @@ export const Service: FC<IServiceProps> = ({
       <DataTooltip content={<DataTable body={DataJSON} />}>
         <g data-testid="arch-service">
           <rect id="to" x={x} y={y} className={classes.service} onClick={handleClick} />
-          <line x1={x + 110} y1={y + 25} x2={x + 210} y2={y + 25} stroke="black" stroke-width="1" />
-
+          <Arrow x={0} y={y} x2={x} y2={y} />
           <text x={labelPostion.x} y={labelPostion.y} className={classes.service_label}>
             {title}
           </text>
