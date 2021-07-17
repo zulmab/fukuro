@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useReducer } from 'react'
 import { Main } from '../layout/Main'
 import classes from '../styles/Home.module.css'
 import { Client } from '../components/architecture/Client'
@@ -12,13 +12,17 @@ import {
   Client as IClient,
   Service as IService,
 } from '../state/state'
+import { Fab } from '@material-ui/core'
+import PlayArrowIcon from '@material-ui/icons/PlayArrow'
+const { flatten } = require('ramda')
 
 export default function Home(): JSX.Element {
   const [state, dispatch] = useReducer(simulatorReducer, initialSimulatorState)
 
-  useEffect(() => {
-    console.log(state)
-  }, [state])
+  const handleButtonClick = () => {
+    console.log(flatten([state.clients, state.resources, state.services]))
+  }
+
   return (
     <SimulatorContext.Provider value={{ state, dispatch }}>
       <Main>
@@ -63,6 +67,16 @@ export default function Home(): JSX.Element {
             />
           ))}
         </svg>
+        <Fab
+          color="primary"
+          aria-label="edit"
+          variant="extended"
+          className={classes.play_button}
+          onClick={handleButtonClick}
+        >
+          Simulate
+          <PlayArrowIcon />
+        </Fab>
       </Main>
     </SimulatorContext.Provider>
   )
