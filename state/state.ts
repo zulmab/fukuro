@@ -4,38 +4,30 @@ export interface SimulatorState {
   resources: Resource[]
 }
 
-export interface Client {
+export interface Base {
   id: string
-  title: string
+  label: string
   type: string
-  reqRate: number
-  hasConnection: boolean
-  coordX: number
-  coordY: number
-  idservice: string
+  x: number
+  y: number
 }
 
-export interface Service {
-  id: string
-  title: string
-  type: string
-  maxreqcapacity: number
-  coordX: number
-  coordY: number
-  idresource: string
-  concurrencia: number
+export interface Client extends Base {
+  requestRate: number
+  service: string
 }
 
-export interface Resource {
-  id: string
-  title: string
-  type: string
-  minlatency: number
-  maxlatency: number
-  failurerate: number
-  coordX: number
-  coordY: number
-  concurrencia: number
+export interface Service extends Base {
+  maxRequestCapacity: number
+  resources: string[]
+  concurrency: number
+}
+
+export interface Resource extends Base {
+  minLatency: number
+  maxLatency: number
+  failureRate: number
+  concurrency: number
 }
 
 export const initialSimulatorState: SimulatorState = {

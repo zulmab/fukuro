@@ -5,34 +5,27 @@ import { DataTable } from '../../DataTable'
 import { IClientProps } from '../../../interfaces/IClient'
 import { makeLabelPosition } from '../../../utils/utilities'
 import { Modal } from '../../Modal'
+import { useModal } from '../../../hooks/useModal'
 
-export const Client: FC<IClientProps> = ({ title, x, y, requestRate = 1, hasConnection }) => {
-  const [open, setOpen] = useState(false)
+export const Client: FC<IClientProps> = ({ id, title, x, y, requestRate = 1 }) => {
+  const { open, handleClick, handleClose } = useModal()
   const labelPostion = makeLabelPosition(x, y)
 
   const DataJSON: object[] = [
     {
       title: 'Request rate',
       value: requestRate,
-      field: 'reqRate',
+      field: 'requestRate',
       postfix: 'requests',
       abbv: 'req',
     },
   ]
 
-  const handleClick = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
-
   return (
     <>
       <DataTooltip content={<DataTable body={DataJSON} />}>
         <g data-testid="arch-client">
-          <rect x={x} y={y} className={classes.client} onClick={handleClick} />
+          <rect id={id} x={x} y={y} className={classes.client} onClick={handleClick} />
           <text x={labelPostion.x} y={labelPostion.y} className={classes.client_label}>
             {title}
           </text>
@@ -48,7 +41,7 @@ export const Client: FC<IClientProps> = ({ title, x, y, requestRate = 1, hasConn
             {
               title: 'title',
               value: title,
-              field: 'title',
+              field: 'label',
               postfix: '',
               abbv: '',
             },

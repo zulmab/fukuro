@@ -1,12 +1,15 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useState } from 'react'
 import classes from './Resource.module.css'
 import { DataTooltip } from '../../DataTooltip'
 import { DataTable } from '../../DataTable/DataTable'
 import { IResourceProps } from '../../../interfaces/IResource'
 import { makeLabelPosition } from '../../../utils/utilities'
 import { Modal } from '../../Modal/ModalResource'
+import { Arrow } from '../../Arrow'
+import { useModal } from '../../../hooks/useModal'
 
 export const Resource: FC<IResourceProps> = ({
+  id,
   title,
   x,
   y,
@@ -15,53 +18,46 @@ export const Resource: FC<IResourceProps> = ({
   failurerate = 1,
   concurrencia = 1,
 }) => {
-  const [open, setOpen] = useState(false)
+  const { open, handleClick, handleClose } = useModal()
   const labelPostion = makeLabelPosition(x, y)
 
   const DataJSON: object[] = [
     {
       title: 'Min. latency',
       value: minimumlatency,
-      field: 'minlatency',
+      field: 'minLatency',
       postfix: 'sec',
       abbv: 'sec',
     },
     {
       title: 'Max. latency',
       value: maximlatency,
-      field: 'maxlatency',
+      field: 'maxLatency',
       postfix: 'sec',
       abbv: 'sec',
     },
     {
       title: 'Failure rate',
       value: failurerate,
-      field: 'failurerate',
+      field: 'failureRate',
       postfix: '%',
       abbv: '%',
     },
     {
       title: 'Concurrencia',
       value: concurrencia,
-      field: 'concurrencia',
+      field: 'concurrency',
       postfix: '',
       abbv: '',
     },
   ]
 
-  const handleClick = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
-
   return (
     <>
       <DataTooltip content={<DataTable body={DataJSON} />}>
         <g data-testid="arch-resource">
-          <rect x={x} y={y} className={classes.resource} onClick={handleClick} />
+          <rect id={id} x={x} y={y} className={classes.resource} onClick={handleClick} />
+          <Arrow x={210} y={y} x2={x} y2={y} />
           <text x={labelPostion.x} y={labelPostion.y} className={classes.resource_label}>
             {title}
           </text>
@@ -87,7 +83,7 @@ export const Resource: FC<IResourceProps> = ({
             {
               title: 'title',
               value: title,
-              field: 'title',
+              field: 'label',
               postfix: '',
               abbv: '',
             },

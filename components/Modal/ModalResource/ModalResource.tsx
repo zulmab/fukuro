@@ -14,7 +14,7 @@ export interface IModalResourceProps {
 export const Modal: FC<IModalResourceProps> = ({ open, data, title, handleClose, handleSave }) => {
   const { dispatch } = useContext(SimulatorContext)
   const handleTextFieldChange = (field: string, e: any) => {
-    const value = field !== 'title' ? parseInt(e.target.value) : e.target.value
+    const value = field !== 'label' ? parseInt(e.target.value) : e.target.value
     dispatch(editResource(value, field))
   }
 

@@ -20,7 +20,7 @@ export const ModalService: FC<IModalServiceProps> = ({
 }) => {
   const { dispatch } = useContext(SimulatorContext)
   const handleTextFieldChange = (field: string, e: any) => {
-    const value = field !== 'title' ? parseInt(e.target.value) : e.target.value
+    const value = field !== 'label' ? parseInt(e.target.value) : e.target.value
     dispatch(editService(value, field))
   }
   return (

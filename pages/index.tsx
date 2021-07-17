@@ -6,7 +6,12 @@ import { Service } from '../components/architecture/Service'
 import { Resource } from '../components/architecture/Resource'
 import { SimulatorContext } from '../state/context'
 import { simulatorReducer } from '../state/reducer'
-import { initialSimulatorState } from '../state/state'
+import {
+  initialSimulatorState,
+  Resource as IResource,
+  Client as IClient,
+  Service as IService,
+} from '../state/state'
 
 export default function Home(): JSX.Element {
   const [state, dispatch] = useReducer(simulatorReducer, initialSimulatorState)
@@ -23,35 +28,37 @@ export default function Home(): JSX.Element {
           height="620"
           className={classes.canvas}
         >
-          {state.clients.map((c, index) => (
+          {state.clients.map((c: IClient, index) => (
             <Client
-              title={c.title}
-              x={c.coordX}
-              y={c.coordY}
-              requestRate={c.reqRate}
-              hasConnection={c.hasConnection}
+              id={`clientId-${index}`}
+              title={c.label}
+              x={c.x}
+              y={c.y}
+              requestRate={c.requestRate}
               key={`client-${index}`}
             />
           ))}
-          {state.services.map((c, index) => (
+          {state.services.map((c: IService, index) => (
             <Service
-              title={c.title}
-              x={c.coordX}
-              y={c.coordY}
-              maxrequestcapacity={c.maxreqcapacity}
-              concurrencia={c.concurrencia}
+              id={`serviceId-${index}`}
+              title={c.label}
+              x={c.x}
+              y={c.y}
+              maxrequestcapacity={c.maxRequestCapacity}
+              concurrencia={c.concurrency}
               key={`service-${index}`}
             />
           ))}
-          {state.resources.map((r, index) => (
+          {state.resources.map((r: IResource, index) => (
             <Resource
-              title={r.title}
-              x={r.coordX}
-              y={r.coordY}
-              minimumlatency={r.minlatency}
-              maximlatency={r.maxlatency}
-              failurerate={r.failurerate}
-              concurrencia={r.concurrencia}
+              id={`resourceId-${index}`}
+              title={r.label}
+              x={r.x}
+              y={r.y}
+              minimumlatency={r.minLatency}
+              maximlatency={r.maxLatency}
+              failurerate={r.failureRate}
+              concurrencia={r.concurrency}
               key={`resource-${index}`}
             />
           ))}

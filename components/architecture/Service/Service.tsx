@@ -5,47 +5,43 @@ import { DataTable } from '../../DataTable/DataTable'
 import { IServiceProps } from '../../../interfaces/IService'
 import { makeLabelPosition } from '../../../utils/utilities'
 import { ModalService } from '../../Modal/ModalService'
+import { Arrow } from '../../Arrow'
+import { useModal } from '../../../hooks/useModal'
 
 export const Service: FC<IServiceProps> = ({
+  id,
   title,
   x,
   y,
   maxrequestcapacity = 1,
   concurrencia = 1,
 }) => {
-  const [open, setOpen] = useState(false)
+  const { open, handleClick, handleClose } = useModal()
   const labelPostion = makeLabelPosition(x, y)
 
   const DataJSON: object[] = [
     {
       title: 'Max req. capacity',
       value: maxrequestcapacity,
-      field: 'maxreqcapacity',
+      field: 'maxRequestCapacity',
       postfix: '',
       abbv: '',
     },
     {
       title: 'Concurrencia',
       value: concurrencia,
-      field: 'concurrencia',
+      field: 'concurrency',
       postfix: '',
       abbv: '',
     },
   ]
 
-  const handleClick = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
-  }
-
   return (
     <>
       <DataTooltip content={<DataTable body={DataJSON} />}>
         <g data-testid="arch-service">
-          <rect x={x} y={y} className={classes.service} onClick={handleClick} />
+          <rect id="to" x={x} y={y} className={classes.service} onClick={handleClick} />
+          <Arrow x={0} y={y} x2={x} y2={y} />
           <text x={labelPostion.x} y={labelPostion.y} className={classes.service_label}>
             {title}
           </text>
@@ -70,7 +66,7 @@ export const Service: FC<IServiceProps> = ({
             {
               title: 'title',
               value: title,
-              field: 'title',
+              field: 'label',
               postfix: '',
               abbv: '',
             },
