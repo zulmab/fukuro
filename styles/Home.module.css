@@ -1,3 +1,9 @@
 .canvas {
   background-image: url('../assets/grid.jpg');
 }
+
+.play_button {
+  bottom: 40px;
+  left: 60px;
+  align-self: flex-end;
+}

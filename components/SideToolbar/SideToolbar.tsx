@@ -11,8 +11,6 @@ import ListItemText from '@material-ui/core/ListItemText'
 import { useStyles } from './uiStyles'
 import { SimulatorContext } from '../../state/context'
 import { addClient, addService, addResource } from '../../state/reducer'
-const { flatten } = require('ramda')
-
 export interface ISideToolbar {
   isOpen: boolean
   onClose: () => void
@@ -40,7 +38,7 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
             requestRate: 10,
             x: 10,
             y: 200,
-            service: 'service_id',
+            resources: ['service_id'],
           })
         )
       },
@@ -76,15 +74,9 @@ export const SideToolbar: FC<ISideToolbar> = (props) => {
             x: 400,
             y: 200,
             concurrency: 5,
+            resources: [],
           })
         )
-      },
-    },
-    {
-      text: 'Play',
-      action: () => {
-        const items = flatten([state.clients, state.resources, state.services])
-        alert(JSON.stringify(items))
       },
     },
   ]
